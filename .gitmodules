@@ -1,0 +1,16 @@
+[submodule "act/bin/lib/chardet"]
+	path = act/bin/lib/chardet
+	url = https://github.com/chardet/chardet
+[submodule "act/bin/lib/requests"]
+	path = act/bin/lib/requests
+	url = https://github.com/requests/requests
+[submodule "act/bin/lib/idna"]
+	path = act/bin/lib/idna
+	url = https://github.com/kjd/idna
+[submodule "act/bin/lib/python-certifi"]
+	path = act/bin/lib/python-certifi
+	url = https://github.com/certifi/python-certifi
+[submodule "act/bin/lib/urllib3"]
+	path = act/bin/lib/urllib3
+	url = https://github.com/urllib3/urllib3
+	branch = release

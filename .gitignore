@@ -1,0 +1,5 @@
+act/local/*
+__pycache__
+*.pyc
+act/metadata/local.meta
+dist/*

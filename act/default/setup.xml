@@ -1,0 +1,48 @@
+<setup>
+
+    <block title="ACT Setup" endpoint="act/config" entity="config">
+        <text>This URL will be used for external lookups towards the ACT API</text>
+
+        <input field="api_url">
+            <label>ACT API URL</label>
+            <type>text</type>
+        </input>
+
+        <text>This URL will be used for for workflow actions to redirect the user to the ACT GUI</text>
+
+        <input field="www_url">
+            <label>ACT WWW URL</label>
+            <type>text</type>
+        </input>
+
+        <text>ACT user ID</text>
+
+        <input field="act_userid">
+            <label>ACT User ID</label>
+            <type>text</type>
+        </input>
+
+        <text>Proxy to use for API lookups (optional). Must be on format [host]:[port].</text>
+
+        <input field="api_proxy">
+            <label>Proxy for API</label>
+            <type>text</type>
+        </input>
+
+        <text>HTTP auth username for api</text>
+
+        <input field="api_http_user">
+            <label>HTTP auth username</label>
+            <type>text</type>
+        </input>
+
+        <text>HTTP auth password for api</text>
+
+        <input field="api_http_password">
+            <label>HTTP auth password</label>
+            <type>password</type>
+        </input>
+
+    </block>
+
+</setup>

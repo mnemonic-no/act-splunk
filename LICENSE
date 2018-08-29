@@ -16,7 +16,7 @@ PERFORMANCE OF THIS SOFTWARE.
 
 ----------------------------------------------------------------------------
 The following modules are included. Look at the individual modules for their respective license:
-charet    https://github.com/chardet/chardet
+chardet   https://github.com/chardet/chardet
 requests  https://github.com/requests/requests
 idna      https://github.com/kjd/idna
 certifi   https://github.com/certifi/python-certifi

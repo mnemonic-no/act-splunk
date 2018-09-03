@@ -18,6 +18,7 @@ tar zcf $filename \
     --exclude=act/bin/lib/urllib3/Makefile \
     --exclude=act/bin/lib/urllib3/docs/Makefile \
     --exclude=bin/lib/requests/docs/Makefile \
+    --exclude=__pycache__ \
     --exclude=act/bin/lib/chardet/docs/Makefile \
     --exclude=.git \
     --exclude=\*.pyc \

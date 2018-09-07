@@ -28,9 +28,42 @@ Within search result, you will find workflow actions on supported field. When cl
 
 ![Workflow Actions](screenshots/workflow_action.png "Workflow actions")
 
-## External lookup towards act
+## ACT Search
 
-When searching, you can use the `fact_search` external lookup to lookup facts related to a field.
+You can specify a generic search using the `actsearch` command, to generate events based on an ACT query:
 
-![External Lookoup](screenshots/external_lookup.png "External Lookup")
+```
+| actsearch [<keyword>] [option=value] [option=value]
+```
 
+![Keyword search](screenshots/actsearch-keyword "Keyword search")
+
+The follwoing options can be specified, using `option=value` to limit the search result.
+
+* limit (default=25)
+* fact_type
+* fact_value
+* object_type
+* object_value
+
+![Search options](screenshots/actsearch-options.png "Search options")
+
+
+```
+```
+
+## ACT annotation
+
+You can use the `actadd` command to annotate existing events with data from an ACT query:
+
+```
+.... | actadd field1 [... fieldN] [option=value] [option=value]
+```
+
+![ACT annotation](screenshots/actadd.png "ACT annotation")
+
+Fields specified will be used as object_value in the search and the search result can be limited by the same options specified in the ACT Search.
+
+`actsearch` and `actadd` can also be combined to annotate results from the search:
+
+![Nested search](screenshots/actsearch-nested "Nested search")

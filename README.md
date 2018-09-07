@@ -36,7 +36,7 @@ You can specify a generic search using the `actsearch` command, to generate even
 | actsearch [<keyword>] [option=value] [option=value]
 ```
 
-![Keyword search](screenshots/actsearch-keyword "Keyword search")
+![Keyword search](screenshots/actsearch-keyword.png "Keyword search")
 
 The follwoing options can be specified, using `option=value` to limit the search result.
 
@@ -66,4 +66,4 @@ Fields specified will be used as object_value in the search and the search resul
 
 `actsearch` and `actadd` can also be combined to annotate results from the search:
 
-![Nested search](screenshots/actsearch-nested "Nested search")
+![Nested search](screenshots/actsearch-nested.png "Nested search")

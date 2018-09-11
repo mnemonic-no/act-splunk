@@ -57,7 +57,7 @@ The follwoing options can be specified, using `option=value` to limit the search
 You can use the `acta` command to annotate existing events with data from an ACT query:
 
 ```
-.... | actadd field1 [... fieldN] [option=value] [option=value]
+.... | acta field1 [... fieldN] [option=value] [option=value]
 ```
 
 ![ACT annotation](screenshots/actadd.png "ACT annotation")

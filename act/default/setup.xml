@@ -1,6 +1,6 @@
 <setup>
 
-    <block title="ACT Setup" endpoint="act/config" entity="config">
+    <block title="ACT Setup" endpoint="act/act_config" entity="config">
         <text>This URL will be used for external lookups towards the ACT API</text>
 
         <input field="api_url">

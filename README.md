@@ -66,4 +66,4 @@ Fields specified will be used as object_value in the search and the search resul
 
 `actsearch` and `acta` can also be combined to annotate results from the search:
 
-![Nested search](screenshots/act-nested.png "Nested search")
+![Nested search](screenshots/actsearch-nested.png "Nested search")

@@ -1,0 +1,3 @@
+pyexcel-xlsx
+requests
+arrow

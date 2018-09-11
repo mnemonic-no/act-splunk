@@ -18,7 +18,7 @@ def fact_search(client, **kwargs):
             elif obj.direction == "FactIsSource":
                 event["dest_object_type"] = obj.type.name
                 event["dest_object_value"] = obj.value
-            elif (not obj.direction) or obj.direction == "BiDiractional":
+            elif (not obj.direction) or obj.direction == "BiDirectional":
                 if "source_object_type" not in event:
                     event["source_object_type"] = obj.type.name
                     event["source_object_value"] = obj.value

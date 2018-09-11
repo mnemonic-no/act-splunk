@@ -30,10 +30,10 @@ Within search result, you will find workflow actions on supported field. When cl
 
 ## ACT Search
 
-You can specify a generic search using the `actsearch` command, to generate events based on an ACT query:
+You can specify a generic search using the `act` command, to generate events based on an ACT query:
 
 ```
-| actsearch [<keyword>] [option=value] [option=value]
+| act [<keyword>] [option=value] [option=value]
 ```
 
 ![Keyword search](screenshots/actsearch-keyword.png "Keyword search")
@@ -54,7 +54,7 @@ The follwoing options can be specified, using `option=value` to limit the search
 
 ## ACT annotation
 
-You can use the `actadd` command to annotate existing events with data from an ACT query:
+You can use the `acta` command to annotate existing events with data from an ACT query:
 
 ```
 .... | actadd field1 [... fieldN] [option=value] [option=value]
@@ -64,6 +64,6 @@ You can use the `actadd` command to annotate existing events with data from an A
 
 Fields specified will be used as object_value in the search and the search result can be limited by the same options specified in the ACT Search.
 
-`actsearch` and `actadd` can also be combined to annotate results from the search:
+`actsearch` and `acta` can also be combined to annotate results from the search:
 
-![Nested search](screenshots/actsearch-nested.png "Nested search")
+![Nested search](screenshots/act-nested.png "Nested search")

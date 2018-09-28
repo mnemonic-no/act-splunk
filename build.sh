@@ -29,3 +29,5 @@ tar zcf $filename \
     act
 
 splunk-appinspect inspect $filename
+
+echo "package: ${filename}"

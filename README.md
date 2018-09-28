@@ -1,10 +1,12 @@
 # act-splunk
 
-act-splunk is a Splunk App that adds workflow actions and external lookups towards the [ACT platform](https://github.com/mnemonic-no/act-platform).
+act-splunk is a Splunk Add-on that adds workflow actions and external lookups towards the [ACT platform](https://github.com/mnemonic-no/act-platform).
+
+The add-on is preconfigured to use an open, read only ACT instance with [public data](http://act-eu2.mnemonic.no).
 
 # Installation
 
-* Download the app from spunkbase
+* Download the add-on from [splunkbase](https://splunkbase.splunk.com/app/4195/).
 
 or
 

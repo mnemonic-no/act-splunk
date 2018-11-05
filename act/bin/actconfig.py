@@ -10,6 +10,7 @@ sys.path.insert(0, os.path.join(appdir, "bin/lib/idna"))
 sys.path.insert(0, os.path.join(appdir, "bin/lib/python-certifi"))
 sys.path.insert(0, os.path.join(appdir, "bin/lib/requests"))
 sys.path.insert(0, os.path.join(appdir, "bin/lib/urllib3"))
+sys.path.insert(0, os.path.join(appdir, "bin/lib/act-api-python"))
 
 import act
 

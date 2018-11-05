@@ -11,20 +11,16 @@ def fact_search(client, **kwargs):
             "fact_value": fact.value
         }
 
-        for obj in fact.objects:
-            if obj.direction == "FactIsDestination":
-                event["source_object_type"] = obj.type.name
-                event["source_object_value"] = obj.value
-            elif obj.direction == "FactIsSource":
-                event["dest_object_type"] = obj.type.name
-                event["dest_object_value"] = obj.value
-            elif (not obj.direction) or obj.direction == "BiDirectional":
-                if "source_object_type" not in event:
-                    event["source_object_type"] = obj.type.name
-                    event["source_object_value"] = obj.value
-                else:
-                    event["dest_object_type"] = obj.type.name
-                    event["dest_object_value"] = obj.value
+        if fact.source_object:
+            event["source_object_type"] = fact.source_object.type.name
+            event["source_object_value"] = fact.source_object.value
+
+        if fact.destination_object:
+            event["dest_object_type"] = fact.destination_object.type.name
+            event["dest_object_value"] = fact.destination_object.value
+
+        if fact.bidirectional_binding:
+            event["bidirectional_binding"] = "true"
 
         result.append(event)
 

@@ -8,7 +8,10 @@ def fact_search(client, object_value, **kwargs):
     for fact in client.fact_search(object_value = object_value, **kwargs):
         heading = fact.type.name
 
-        for obj in fact.objects:
+        for obj in [fact.source_object, fact.destination_object]:
+            if not obj:
+                continue
+
             value = obj.value
             if fact.value and fact.value != "-":
                 # Append fact value if it is set

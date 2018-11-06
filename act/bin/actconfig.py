@@ -16,13 +16,18 @@ import act
 
 def setup():
     cfg = cli.getConfStanza('act', 'config')
+    app = cli.getConfStanza('app', 'launcher')
     api_url = cfg.get("api_url")
     user_id = cfg.get("act_userid")
     api_proxy = cfg.get("api_proxy")
     api_http_user = cfg.get("api_http_user")
     api_http_password = cfg.get("api_http_auth")
 
-    requests_opt = {}
+    requests_opt = {
+        "headers": { # Include version string in user agent header
+            "User-Agent": "act-splunk-{}".format(app.get("version"))
+        }
+    }
     if api_http_user or api_http_password:
         requests_opt["auth"] = (api_http_user, api_http_password)
 

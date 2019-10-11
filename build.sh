@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # Checkout submodules
-git submodule init
-git submodule update --init --recursive
+# git submodule init
+# git submodule update --init --recursive
 
 version=$(grep -oP '(?<=version=).*' act/default/app.conf)
 filename=dist/act-${version}.spl

@@ -14,3 +14,6 @@
 	path = act/bin/lib/urllib3
 	url = https://github.com/urllib3/urllib3
 	branch = release
+[submodule "act/bin/lib/act-api-python"]
+	path = act/bin/lib/act-api-python
+	url = https://github.com/mnemonic-no/act-api-python

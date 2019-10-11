@@ -10,8 +10,9 @@ sys.path.insert(0, os.path.join(appdir, "bin/lib/idna"))
 sys.path.insert(0, os.path.join(appdir, "bin/lib/python-certifi"))
 sys.path.insert(0, os.path.join(appdir, "bin/lib/requests"))
 sys.path.insert(0, os.path.join(appdir, "bin/lib/urllib3"))
+sys.path.insert(0, os.path.join(appdir, "bin/lib/ipaddress"))
 
-import act
+import act.api
 
 def setup():
     cfg = cli.getConfStanza('act', 'config')
@@ -31,7 +32,7 @@ def setup():
             "https": api_proxy,
         }
 
-    return act.Act(
+    return act.api.Act(
         api_url,
         user_id=user_id,
         log_level="warning",

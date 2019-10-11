@@ -8,16 +8,16 @@ def fact_search(client, object_value, **kwargs):
     for fact in client.fact_search(object_value = object_value, **kwargs):
         heading = fact.type.name
 
-        for obj in fact.objects:
+        if fact.value and fact.value != "-":
+            # Append fact value if it is set
+            fact_value = ":{}".format(fact.value)
+        else:
+            fact_value = ""
+
+        field = "{}{}".format(heading, fact_value)
+
+        for obj in [fact.source_object, fact.destination_object]:
             value = obj.value
-            if fact.value and fact.value != "-":
-                # Append fact value if it is set
-                fact_value = ":{}".format(fact.value)
-            else:
-                fact_value = ""
-
-            field = "{}{}".format(heading, fact_value)
-
             if obj.value not in object_value:
                 event[field] = event.get(field, []) + [value]
 

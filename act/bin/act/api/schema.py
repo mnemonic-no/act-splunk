@@ -1,6 +1,7 @@
 import copy
 import json
 from .utils import snake_to_camel, camel_to_snake
+from logging import warning
 
 
 def default_serializer(value):
@@ -30,7 +31,7 @@ class Field(object):
             deserializer=default_serializer,
             serialize_target=None,
             deserialize_target=None,
-            flatten=None):
+            flatten=False):
         """
 Args:
     name (str):                Field name
@@ -41,8 +42,7 @@ Args:
                                False if field should not be deserialized.
     serialize_target (str):    Move data to this key(name) when erializing
     deserialize_target (str):  Move data to this key(name) when deserializing
-    reprf (func|False):        repr() for field. Default is the value of the field
-                               If False, the field will not be used in repr()
+    flatten (bool):            Flatten data structure
     """
         self.name = name
         self.default = default
@@ -180,9 +180,8 @@ class Schema(object):
             field = self.get_deserialize_field(k)
 
             if not field:
-                raise ValidationError(
-                    '"{}" not defined in schema on {}'.format(
-                        k, self.__class__))
+                warning('"{}" not defined in schema on {}'.format(k, self.__class__))
+                continue
 
             # deserializer disabled
             if field.deserializer is False:
@@ -206,9 +205,9 @@ class Schema(object):
             # - field is deseriazlied with another key
             # - field is flattened
             # - deserializer is disabled
-            if field.name not in self.data \
-                    and not field.deserialize_target \
-                    and not field.flatten \
+            if field.name not in self.data\
+                    and not field.deserialize_target\
+                    and not field.flatten\
                     and field.deserializer is not False:
                 self.data[field.name] = copy.copy(field.default)
 
@@ -216,13 +215,27 @@ class Schema(object):
         return self.data[key]
 
     def __getattr__(self, attr):
-        if attr in self.data:
-            return self.data[attr]
+        """
+        Get attribute from schema
+        """
+        if attr in self.__dict__.get("data", {}):
+            return self.__dict__["data"][attr]
 
         raise AttributeError(
             # pylint: disable=too-many-format-args
             "{} object has no attribute {}".format(
                 self.__class__, attr))
+
+    def __setattr__(self, attr, value):
+        """
+        Set schema attribute
+        """
+
+        # If attribute is in schema, update schema
+        if attr in self.__dict__.get("data", {}):
+            self.__dict__["data"][attr] = value
+        else:  # If not, set attribute on object directly
+            self.__dict__[attr] = value
 
     def __eq__(self, other):
         if not isinstance(other, self.__class__):

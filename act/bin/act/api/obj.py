@@ -1,7 +1,10 @@
 from logging import info, warning
-import act
-from .schema import Field, schema_doc, MissingField
-from .base import ActBase, NameSpace
+
+import act.api
+
+from . import DEFAULT_VALIDATOR
+from .base import ActBase, NameSpace, ActResultSet, Organization
+from .schema import Field, MissingField, schema_doc
 
 
 class ObjectType(ActBase):
@@ -9,7 +12,7 @@ class ObjectType(ActBase):
         Field("name"),
         Field("id"),
         Field("validator", default="RegexValidator"),
-        Field("validator_parameter", default=act.DEFAULT_VALIDATOR),
+        Field("validator_parameter", default=DEFAULT_VALIDATOR),
         Field("namespace", deserializer=NameSpace),
     ]
 
@@ -77,10 +80,22 @@ class Object(ActBase):
 
         response = self.api_post(url)
 
-        result_set = act.base.ActResultSet(response, act.fact.Fact)
+        result_set = ActResultSet(response, act.api.fact.Fact)
 
         # Add authentication information to all facts
         return result_set("configure", self.config)
+
+    def __eq__(self, other):
+        """ Check equality with another object """
+
+        # If other is None, return True if id, type and value is None
+        if other is None:
+            if self.id is None and self.type.name is None and self.value is None:
+                return True
+            return False
+
+        # Otherwise, use equality check from super class
+        return super(Object, self).__eq__(other)
 
     def serialize(self):
         # Return None for empty objects (non initialized objects)
@@ -103,9 +118,9 @@ class Object(ActBase):
         result = []
         for element in self.api_post(url, query=query)["data"]:
             if any(["sourceObject" in element, "destinationObject" in element]):
-                result.append(act.fact.Fact(**element))
+                result.append(act.api.fact.Fact(**element))
             elif "statistics" in element:
-                result.append(act.fact.Object(**element))
+                result.append(act.api.fact.Object(**element))
             else:
                 warning("Unable to guess element type: {}".format(element))
                 result.append(element)
@@ -115,6 +130,13 @@ class Object(ActBase):
         # autodetect the types and deserialize accordingly
 
         return result
+
+    def __bool__(self):
+        """ Return False unless we either have an id or both type and value """
+        if self.id or (self.type and self.value):
+            return True
+
+        return False
 
     def __str__(self):
         """

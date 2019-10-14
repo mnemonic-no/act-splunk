@@ -1,11 +1,13 @@
 import traceback
-from splunk import Intersplunk
+
 import actconfig
+from splunk import Intersplunk
+
 
 def fact_search(client, object_value, **kwargs):
     event = {}
 
-    for fact in client.fact_search(object_value = object_value, **kwargs):
+    for fact in client.fact_search(object_value=object_value, **kwargs):
         heading = fact.type.name
 
         for obj in [fact.source_object, fact.destination_object]:
@@ -34,7 +36,8 @@ def main():
     opts, kwargs = Intersplunk.getKeywordsAndOptions()
 
     if not opts:
-        Intersplunk.generateErrorResult("Usage: | actadd <field1> ... <fieldN> [fact_type=<fact type>] [fact_value=<fact value]")
+        Intersplunk.generateErrorResult(
+            "Usage: | actadd <field1> ... <fieldN> [fact_type=<fact type>] [fact_value=<fact value]")
         return
 
     events, _, _ = Intersplunk.getOrganizedResults()

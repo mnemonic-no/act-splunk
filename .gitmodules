@@ -17,3 +17,6 @@
 [submodule "act/bin/lib/act-api-python"]
 	path = act/bin/lib/act-api-python
 	url = https://github.com/mnemonic-no/act-api-python
+[submodule "act/bin/lib/ipaddress"]
+	path = act/bin/lib/ipaddress
+	url = https://github.com/phihag/ipaddress

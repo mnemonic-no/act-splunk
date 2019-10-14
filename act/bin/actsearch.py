@@ -19,6 +19,9 @@ def fact_search(client, **kwargs):
             event["dest_object_type"] = fact.destination_object.type.name
             event["dest_object_value"] = fact.destination_object.value
 
+        if fact.bidirectional_binding:
+            event["bidirectional_binding"] = "true"
+
         result.append(event)
 
     return result

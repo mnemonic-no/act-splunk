@@ -2,6 +2,35 @@ import traceback
 from splunk import Intersplunk
 import actconfig
 
+
+def fact_search(client, object_value, **kwargs):
+    event = {}	    event = {}
+    for fact in client.fact_search(object_value = object_value, **kwargs):	    for fact in client.fact_search(object_value = object_value, **kwargs):
+        heading = fact.type.name	        heading = fact.type.name
+
+
+        for obj in [fact.source_object, fact.destination_object]:	        if fact.value and fact.value != "-":
+            if not obj:	            # Append fact value if it is set
+                continue	            fact_value = ":{}".format(fact.value)
+
+        else:
+            value = obj.value	            fact_value = ""
+            if fact.value and fact.value != "-":
+                # Append fact value if it is set
+                fact_value = ":{}".format(fact.value)
+            else:
+                fact_value = ""
+
+
+            field = "{}{}".format(heading, fact_value)	        field = "{}{}".format(heading, fact_value)
+
+
+        for obj in [fact.source_object, fact.destination_object]:
+            value = obj.value
+            if obj.value not in object_value:	            if obj.value not in object_value:
+                event[field] = event.get(field, []) + [value]
+
+
 def fact_search(client, object_value, **kwargs):
     event = {}
 

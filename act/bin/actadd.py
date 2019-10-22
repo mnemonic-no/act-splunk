@@ -36,7 +36,7 @@ def main():
     opts, kwargs = Intersplunk.getKeywordsAndOptions()
 
     if not opts:
-        Intersplunk.generateErrorResult(
+        Intersplunk.generateErrorResults(
             "Usage: | actadd <field1> ... <fieldN> [fact_type=<fact type>] [fact_value=<fact value]")
         return
 

@@ -1,6 +1,7 @@
 act/local/*
 __pycache__
 *.pyc
+act/README
 act/metadata/local.meta
 test-data/carbanak.csv
 dist/*

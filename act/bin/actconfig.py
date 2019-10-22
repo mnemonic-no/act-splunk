@@ -4,13 +4,8 @@ from splunk.clilib import cli_common as cli
 
 appdir = os.path.dirname(os.path.dirname(__file__))
 
-# Use local modules
-sys.path.insert(0, os.path.join(appdir, "bin/lib/chardet"))
-sys.path.insert(0, os.path.join(appdir, "bin/lib/idna"))
-sys.path.insert(0, os.path.join(appdir, "bin/lib/python-certifi"))
-sys.path.insert(0, os.path.join(appdir, "bin/lib/requests"))
-sys.path.insert(0, os.path.join(appdir, "bin/lib/urllib3"))
-sys.path.insert(0, os.path.join(appdir, "bin/lib/ipaddress"))
+# Use local version of act api
+sys.path.insert(0, os.path.join(appdir, "bin/lib/act-api-python"))
 
 import act.api
 

@@ -2,7 +2,7 @@
 
 # Checkout submodules
 git submodule init
-git submodule update --init --recursive
+git submodule update --recursive --remote
 
 version=$(grep -oP '(?<=version=).*' act/default/app.conf)
 filename=dist/act-${version}.spl
@@ -18,6 +18,7 @@ tar zcf $filename \
     --exclude=__pycache__ \
     --exclude=.git \
     --exclude=\*.pyc \
+    --exclude=act/bin/lib/act-api-python/test/ \
     --exclude=.gitignore \
     --exclude=.gitmodules \
     --exclude=.travis.yml \
